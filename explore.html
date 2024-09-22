@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Destinations - TravConnect</title>
+    <link rel="stylesheet" href="explore.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="resources/DocScanner Sep 21, 2024 8-55 PM.png" alt="">
+            <a href="#">TravConnect</a></div>
+
+        <!-- Hamburger Icon for Mobile -->
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+<div>
+        <!-- Navigation Links -->
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="companionFinder.html">Companion Finder</a></li>
+            <li><a href="explore.html">Explore Destinations</a></li>
+            <li><a href="crowd.html">Crowd Insights</a></li>
+            <li><a href="login.html">Login / Sign Up</a></li>
+        </ul>
+    </div>
+    </nav>
+
+    <!-- Explore Destinations Page -->
+    <section class="explore-destinations">
+        <h1>Explore Destinations</h1>
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for a destination...">
+            <button onclick="searchPlaces()">Search</button>
+        </div>
+
+        <!-- AI-Based Recommendations -->
+        <section class="recommendations" id="recommendations">
+            <div class="recheading">
+            <h2>Recommended for You</h2></div>
+            <div class="recContent">
+            <div class="places-container" id="recommended-places">
+                <!-- Recommended places will be dynamically inserted here by the backend -->
+                <div class="place-card nature">
+                    <img src="resources/images (5).jpg" alt="Kerala">
+                    <h3>Kerala</h3>
+                    <p>Based on your past nature trips, Kerala is a perfect destination for your next journey!</p>
+                    <button class="details-btn" onclick="viewDetails('Kerala')">View Details</button>
+                </div>
+                <!-- Add more recommendations dynamically -->
+            </div>
+            <div class="places-container" id="recommended-places">
+                <!-- Recommended places will be dynamically inserted here by the backend -->
+                <div class="place-card nature">
+                    <img src="resources/images (7).jpg" alt="Kerala">
+                    <h3>Kanyakumari</h3>
+                    <p>Based on your past nature trips, You can also go for Kanyakumari for your next journey!</p>
+                    <button class="details-btn" onclick="viewDetails('Kerala')">View Details</button>
+                </div>
+                <!-- Add more recommendations dynamically -->
+            </div>
+        </div>
+        </section>
+        
+        <!-- Category Selection -->
+        <div class="categories" id="Categoryid">
+            <button onclick="filterPlaces('all')">All</button>
+            <button onclick="filterPlaces('nature')">Nature</button>
+            <button onclick="filterPlaces('forts')">Forts</button>
+            <button onclick="filterPlaces('historical')">Historical</button>
+            <button onclick="filterPlaces('beaches')">Beaches</button>
+            <button onclick="filterPlaces('mountains')">Mountains</button>
+        </div>
+
+        <!-- Places Container -->
+        <div class="places-container" id="places-container">
+            <!-- Each destination will be displayed here -->
+            <!-- Example card (will be populated dynamically) -->
+            <div class="place-card nature">
+                <img src="resources/images (5).jpg" alt="Kerala">
+                <h3>Kerala</h3>
+                <p>Known for its lush greenery, backwaters, and stunning hill stations, Kerala is a nature lover's paradise.</p>
+                <button class="details-btn" onclick="viewDetails('Kerala')">View Details</button>
+            </div>
+
+            <div class="place-card forts">
+                <img src="resources/images-30-largejpg.jpg" alt="Amber Fort">
+                <h3>Amber Fort</h3>
+                <p>A magnificent fort located in Jaipur, Rajasthan, known for its beautiful architecture and historical significance.</p>
+                <button class="details-btn" onclick="viewDetails('Amber Fort')">View Details</button>
+            </div>
+
+            <div class="place-card beaches">
+                <img src="resources/images (6).jpg" alt="Goa">
+                <h3>Goa</h3>
+                <p>Famous for its stunning beaches, lively nightlife, and Portuguese heritage, Goa is a top destination for beach lovers.</p>
+                <button class="details-btn" onclick="viewDetails('Goa')">View Details</button>
+            </div>
+
+            <div class="place-card mountains">
+                <img src="resources/images (4).jpg" alt="Manali">
+                <h3>Manali</h3>
+                <p>Situated in the Himalayas, Manali offers breathtaking views, adventure activities, and serene landscapes.</p>
+                <button class="details-btn" onclick="viewDetails('Manali')">View Details</button>
+            </div>
+
+            <!-- More place cards go here -->
+        </div>
+    </section>
+
+    <!-- Placeholder for dynamic content (details of a place) -->
+    <section class="place-details" id="place-details" style="display: none;">
+        <h2 id="place-title">Place Title</h2>
+        <p id="place-info">Detailed information about the selected destination will be displayed here.</p>
+        <button class="back-btn" onclick="goBack()">Go Back</button>
+    </section>
+
+    <script src="explore.js"></script>
+</body>
+</html>

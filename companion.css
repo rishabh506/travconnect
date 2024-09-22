@@ -1,0 +1,490 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Color Scheme */
+  :root {
+    --primary-color: #0077b6; /* Blue tone */
+    --secondary-color: #00b4d8; /* Light blue for accent */
+    --highlight-color: #ff6b6b; /* For CTAs or accents */
+    --white: #fff;
+    --gray: #f1f1f1;
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+  }
+  .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  .logo img{
+    height : 70px;
+    border-radius : 100%;
+  }
+  
+  .logo a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 15px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .nav-links li a:hover {
+    background-color: var(--highlight-color);
+    border-radius: 5px;
+  }
+  
+  .menu-toggle {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+  }
+  
+  /* Media Query for Mobile */
+  @media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        z-index: 1;
+    }
+  
+    .nav-links li {
+        text-align: center;
+        margin: 15px 0;
+    }
+  
+    .menu-toggle {
+        display: block;
+    }
+  
+    .navbar.active .nav-links {
+        display: flex;
+    }
+  }
+/* Companion Finder Styling */
+.companion-finder {
+    padding: 50px;
+    text-align: center;
+}
+
+.companion-finder h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #0077b6;
+}
+
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.filter-bar input {
+    padding: 10px;
+    width: 50%;
+    border: 2px solid #00b4d8;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.filter-bar button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-bar button:hover {
+    background-color: #0077b6;
+}
+
+.companion-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.companion-card {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.companion-card img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.companion-card h3 {
+    color: #0077b6;
+    margin-bottom: 10px;
+}
+.companion-card p{
+    margin: 15px;
+}
+
+.chat-btn {
+    background-color: #00b4d8;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.chat-btn:hover {
+    background-color: #ff6b6b;
+}
+
+/* Chat Window Styling */
+.chat-window {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 300px;
+    background-color: white;
+    border: 1px solid #0077b6;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chat-header {
+    background-color: #0077b6;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.chat-body {
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+}
+
+.chat-footer {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-footer input {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #0077b6;
+    border-radius: 5px;
+}
+
+.chat-footer button {
+    padding: 8px 10px;
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    margin-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Show/Hide Chat Window */
+.show {
+    display: block;
+}
+/* Responsive for Companion Finder Page */
+@media only screen and (max-width: 768px) {
+    .filter-bar input {
+        width: 80%;
+    }
+
+    .companion-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .companion-card {
+        width: 100%;
+        max-width: 90%;
+    }
+}
+/* Map Container */
+#map {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Card Styling */
+.profile-card {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 250px;
+    background-color: white;
+    border: 1px solid #0077b6;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 10;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    color: #0077b6;
+}
+
+#close-profile {
+    cursor: pointer;
+    color: #ff6b6b;
+}
+
+.profile-body {
+    padding: 10px 0;
+}
+
+.profile-body p {
+    font-size: 14px;
+    color: #333;
+}
+
+.chat-btn {
+    background-color: #00b4d8;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.chat-btn:hover {
+    background-color: #ff6b6b;
+}
+
+/* Chat Window Styling */
+.chat-window {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 300px;
+    background-color: white;
+    border: 1px solid #0077b6;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 11;
+}
+
+.chat-header {
+    background-color: #0077b6;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 18px;
+}
+
+#close-chat {
+    cursor: pointer;
+    color: #ff6b6b;
+}
+
+.chat-body {
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+    background-color: #f1f1f1;
+}
+
+.chat-footer {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+}
+
+.chat-footer input {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #0077b6;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.chat-footer button {
+    padding: 8px 10px;
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    margin-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Messages Styling */
+.message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 75%;
+    font-size: 14px;
+}
+
+.sent {
+    background-color: #00b4d8;
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.received {
+    background-color: #f1f1f1;
+    color: #333;
+    align-self: flex-start;
+}
+
+/* Show/Hide for Chat and Profile */
+.show {
+    display: block;
+}
+
+/* Responsive Styling */
+@media only screen and (max-width: 768px) {
+    #map {
+        height: 400px;
+    }
+
+    .profile-card {
+        bottom: 10px;
+        left: 10px;
+        width: 90%;
+    }
+
+    .chat-window {
+        right: 10px;
+        width: 90%;
+    }
+
+    .chat-body {
+        height: 150px;
+    }
+}
+
+/* Companion Finder Styling */
+@media only screen and (max-width: 768px) {
+    .filter-bar input {
+      width: 80%;
+    }
+  
+    .companion-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .companion-card {
+      width: 100%;
+      max-width: 90%;
+    }
+  
+    .profile-card {
+      bottom: 10px;
+      left: 10px;
+      width: 90%;
+    }
+  
+    .chat-window {
+      right: 10px;
+      width: 90%;
+    }
+  
+    .chat-body {
+      height: 150px;
+    }
+  }
+  /* Media Query for Mobile */
+@media screen and (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background-color: var(--primary-color);
+      z-index: 1;
+    }
+  
+    .nav-links li {
+      text-align: center;
+      margin: 15px 0;
+    }
+  
+    .menu-toggle {
+      display: block;
+    }
+  
+    .navbar.active .nav-links {
+      display: flex;
+    }
+  }

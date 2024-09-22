@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Real-Time Crowd Density Monitoring</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Color Scheme */
+        :root {
+            --primary-color: #0077b6;
+            /* Blue tone */
+            --secondary-color: #00b4d8;
+            /* Light blue for accent */
+            --highlight-color: #ff6b6b;
+            /* For CTAs or accents */
+            --white: #fff;
+            --gray: #f1f1f1;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            /* flex-direction: column; */
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 70px;
+            border-radius: 100%;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 15px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-links li a:hover {
+            background-color: var(--highlight-color);
+            border-radius: 5px;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .menu-toggle .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* Media Query for Mobile */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                z-index: 1;
+            }
+
+            .nav-links li {
+                text-align: center;
+                margin: 15px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar.active .nav-links {
+                display: flex;
+            }
+        }
+
+        body {
+            background-color: #F0F0F0;
+            padding: 0px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #1E90FF;
+            margin: 20px;
+            text-align: center;
+        }
+
+        /* Search Bar Section */
+        .search-bar {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .search-input {
+            width: 60%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #CCC;
+            margin-right: 10px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #1E90FF;
+            color: #FFF;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background-color: #1C86EE;
+        }
+
+        /* Destination Card */
+        .destination-card {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .destination-info h2 {
+            font-size: 24px;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        .crowd-density {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            color: #333333;
+        }
+
+        .crowd-status {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .low {
+            background-color: #32CD32;
+            /* Green for low density */
+        }
+
+        .moderate {
+            background-color: #FFA500;
+            /* Orange for moderate density */
+        }
+
+        .high {
+            background-color: #FF4500;
+            /* Red for high density */
+        }
+
+        /* Live Data Section */
+        .live-data {
+            font-size: 16px;
+            color: #666666;
+            margin-top: 10px;
+        }
+
+        /* Result Section */
+        .result-section {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .result-section.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+          <img src="resources/DocScanner Sep 21, 2024 8-55 PM.png" alt="">
+          <a href="#">TravConnect</a>
+        </div>
+    
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+    <div>
+        <ul class="nav-links">  
+    
+          <li><a href="index.html">Home</a></li>
+          <li><a href="companionFinder.html">Companion Finder</a></li>
+          <li><a href="explore.html">Explore Destinations</a></li>
+          <li><a href="crowd.html">Crowd Insights</a></li>
+          <li><a href="login.html">Login / Sign Up</a></li>
+        </ul>
+    </div>
+      </nav>
+      
+
+    <h1>Real-Time Crowd Density Monitoring</h1>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="search-input" class="search-input"
+            placeholder="Enter a tourist spot (e.g., Jaipur)" />
+        <button class="search-btn" onclick="searchDestination()">Search</button>
+    </div>
+
+    <!-- Search Results Section -->
+    <div id="results" class="result-section">
+        <div class="destination-card" id="result-card">
+            <div class="destination-info">
+                <h2 id="destination-name"></h2>
+                <div class="crowd-density">
+                    <div class="crowd-status" id="crowd-status"></div>
+                    <p id="crowd-level">Crowd Density:</p>
+                </div>
+                <div class="live-data" id="live-data">Current Visitors:</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Predefined Destinations -->
+    <div class="destination-card">
+        <h2>Nargarh Fort, Jaipur</h2>
+        <div class="crowd-density">
+            <div class="crowd-status low"></div>
+            <p>Crowd Density: Low</p>
+        </div>
+        <div class="live-data" id="eiffel-data">Current Visitors: 250</div>
+    </div>
+
+    <div class="destination-card">
+        <h2>Pashupati Nath Temple</h2>
+        <div class="crowd-density">
+            <div class="crowd-status high"></div>
+            <p>Crowd Density: High</p>
+        </div>
+        <div class="live-data" id="louvre-data">Current Visitors: 2000</div>
+    </div>
+
+    <div class="destination-card">
+        <h2>Hadiamba Devi Temple , Manali</h2>
+        <div class="crowd-density">
+            <div class="crowd-status moderate"></div>
+            <p>Crowd Density: Moderate</p>
+        </div>
+        <div class="live-data">Current Visitors: 800</div>
+    </div>
+
+    <script>
+        // Mock Data for Crowd Levels
+        const destinations = {
+            'Eiffel Tower': { visitors: 250, density: 'low' },
+            'Louvre Museum': { visitors: 2000, density: 'high' },
+            'Colosseum': { visitors: 800, density: 'moderate' },
+            'Statue of Liberty': { visitors: 150, density: 'low' }
+        };
+
+        // Function to simulate real-time crowd data
+        async function fetchCrowdData(destination) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (destinations[destination]) {
+                        resolve(destinations[destination]);
+                    } else {
+                        reject('Destination not found');
+                    }
+                }, 1000);
+            });
+        }
+
+        // Function to search for a destination and display crowd data
+        async function searchDestination() {
+            const searchInput = document.getElementById('search-input').value;
+            const resultSection = document.getElementById('results');
+            const destinationNameElem = document.getElementById('destination-name');
+            const crowdStatusElem = document.getElementById('crowd-status');
+            const crowdLevelElem = document.getElementById('crowd-level');
+            const liveDataElem = document.getElementById('live-data');
+
+            // Clear any previous results
+            destinationNameElem.innerText = '';
+            crowdStatusElem.className = 'crowd-status';
+            crowdLevelElem.innerText = '';
+            liveDataElem.innerText = '';
+
+            try {
+                const data = await fetchCrowdData(searchInput);
+
+                // Update destination details
+                destinationNameElem.innerText = searchInput;
+                liveDataElem.innerText = `Current Visitors: ${data.visitors};`
+
+                // Update crowd density based on fetched data
+                if (data.density === 'low') {
+                    crowdStatusElem.classList.add('low');
+                    crowdLevelElem.innerText = 'Crowd Density: Low';
+                } else if (data.density === 'moderate') {
+                    crowdStatusElem.classList.add('moderate');
+                    crowdLevelElem.innerText = 'Crowd Density: Moderate';
+                } else {
+                    crowdStatusElem.classList.add('high');
+                    crowdLevelElem.innerText = 'Crowd Density: High';
+                }
+
+                // Show the result section
+                resultSection.classList.add('active');
+            } catch (error) {
+                alert(error);
+            }
+        }
+
+        // Simulate updating predefined destinations' crowd data
+        async function updatePredefinedDestinations() {
+            const eiffelData = await fetchCrowdData('Eiffel Tower');
+            document.getElementById('eiffel-data').innerHTML = `Current Visitors: ${eiffelData.visitors}; `
+        }
+
+        updatePredefinedDestinations();
+    </script>
+
+</body>
+
+</html>

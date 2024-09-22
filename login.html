@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sign-up and login with OTP</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #F0F0F0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Form Container */
+        .form-container {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #1E90FF;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="email"],
+        input[type="tel"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;}
+
+            .otp-input {
+                display: none;
+            }
+
+            .form-group button {
+                width: 100%;
+                background-color: #1E90FF;
+                color: #FFFFFF;
+                padding: 12px;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .form-group button:hover {
+                background-color: #1C86EE;
+            }
+
+            .accent-button {
+                background-color: #FFA500;
+            }
+
+            .form-group p {
+                text-align: center;
+                color: #333333;
+                margin-top: 10px;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="form-container"><h1>Sign-Up/Login</h1>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email">
+        </div>
+    
+        <div class="form-group">
+          <label for="mobile">Mobile Number</label>
+          <input type="tel" id="mobile" placeholder="Enter your mobile">
+        </div>
+    
+        <div class="form-group otp-input">
+          <label for="otp">OTP</label>
+          <input type="text" id="otp">
+        </div>
+    
+        <div class="form-group">
+          <button id="request-otp-btn" class="btn btn-primary">Request OTP</button>
+        </div>
+    
+        <div class="form-group otp-input">
+          <button id="verify-otp-btn" class="btn btn-primary">Verify OTP</button>
+        </div>
+    
+        <p id="message" style="color: rgb(255, 0, 0);">Please fill in both fields.</p>
+      </div>
+    
+    <script> const requestOtpBtn = document.getElementById('request-otp-btn');
+        const verifyOtpBtn = document.getElementById('verify-otp-btn');
+        const otpInputFields = document.querySelectorAll('.otp-input');
+        const messageParagraph = document.getElementById('message');
+
+        requestOtpBtn.addEventListener('click', () => {
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+
+            if (email && mobile) {
+                // Here, make an API call to request OTP for the provided email and mobile.
+                // Simulating success for this static example.
+                messageParagraph.textContent = 'OTP sent to your email and mobile.';
+                messageParagraph.style.color = '#198';
+                otpInputFields.forEach(field => {
+                    field.style.display = 'block';
+                });
+                requestOtpBtn.style.display = 'none';
+                verifyOtpBtn.style.display = 'block';
+            } else {
+                messageParagraph.textContent = 'Please enter both email and mobile.';
+                messageParagraph.style.color = 'red';
+            }
+        });
+
+        verifyOtpBtn.addEventListener('click', () => {
+            const otp = document.getElementById('otp').value;
+            if(otp){
+            // Here, make an API call to verify the OTP entered by the user.
+            // Simulating success for this static example.
+            messageParagraph.textContent = 'OTP sent to your email and mobile.';
+            messageParagraph.style.color = '#198';
+
+            // Show the OTP input fields and hide the request OTP button.
+            otpInputFields.forEach(field => {
+                field.style.display = 'block';
+            });
+            
+            requestOtpBtn.style.display = 'none';
+            verifyOtpBtn.style.display = 'block';
+
+        } else {
+            // Handle error case (email and mobile not provided).
+            messageParagraph.textContent = 'Please enter both email and mobile.';
+            messageParagraph.style.color = 'red';
+        }
+});
+
+    </script>
+</body>
+
+</html

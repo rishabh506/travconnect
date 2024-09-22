@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravConnect - Companion Finder</title>
+    <link rel="stylesheet" href="companion.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="resources/DocScanner Sep 21, 2024 8-55 PM.png" alt="">
+            <a href="#">TravConnect</a> 
+        </div>
+        <!-- Hamburger Icon for Mobile -->
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <div>
+
+        <!-- Navigation Links -->
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="companionFinder.html">Companion Finder</a></li>
+            <li><a href="explore.html">Explore Destinations</a></li>
+            <li><a href="crowd.html">Crowd Insights</a></li>
+            <li><a href="login.html">Login / Sign Up</a></li>
+        </ul>
+    </div>
+    </nav>
+    <!-- Companion Finder Section -->
+    <section class="companion-finder">
+        <h1>Find Your Travel Companion</h1>
+        <div class="filter-bar">
+            <input type="text" placeholder="Enter Destination or Companion Name">
+            <button>Search</button>
+        </div>
+
+        <!-- Companion Cards -->
+        <div class="companion-cards">
+            <div class="companion-card">
+                <img src="resources/An-Indian-boy-375075-pixahive.jpg" alt="Companion 1">
+                <h3>Rajat agarwal</h3>
+                <p>Destination: Goa</p>
+                <button class="chat-btn" onclick="openChat('John Doe')">Chat</button>
+            </div>
+
+            <div class="companion-card">
+                <img src="resources/download.jpg" alt="Companion 2">
+                <h3>Sumit Kumar</h3>
+                <p>Destination: Manali</p>
+                <button class="chat-btn" onclick="openChat('Jane Smith')">Chat</button>
+            </div>
+
+            <div class="companion-card">
+                <img src="resources/download (1).jpg" alt="Companion 3">
+                <h3>Krish jain</h3>
+                <p>Destination: Kerala</p>
+                <button class="chat-btn" onclick="openChat('Michael Lee')">Chat</button>
+            </div>
+
+            <div class="companion-card">
+                <img src="resources/images.jpg" alt="Companion 4">
+                <h3>Neha Sharma </h3>
+                <p>Destination: Rishikesh</p>
+                <button class="chat-btn" onclick="openChat('Emily White')">Chat</button>
+            </div>
+
+            <div class="companion-card">
+                <img src="resources/images (1).jpg" alt="Companion 5">
+                <h3>Phool Kumari</h3>
+                <p>Destination: Leh</p>
+                <button class="chat-btn" onclick="openChat('Chris Black')">Chat</button>
+            </div>
+
+            <div class="companion-card">
+                <img src="resources/images (2).jpg" alt="Companion 6">
+                <h3>Kriti jain</h3>
+                <p>Destination: Jaipur</p>
+                <button class="chat-btn" onclick="openChat('Anna Green')">Chat</button>
+            </div>
+            <div class="companion-card">
+                <img src="resources/images (3).jpg" alt="Companion 6">
+                <h3>Sneha anchaliya</h3>
+                <p>Destination: Pushkar</p>
+                <button class="chat-btn" onclick="openChat('Anna Green')">Chat</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Window -->
+<div id="chat-window" class="chat-window">
+    <div class="chat-header">
+        <span id="chat-with">Chat with Kishore kumar</span>
+        <span id="close-chat" onclick="closeChat()">X</span>
+    </div>
+    <div class="chat-body">
+        <div class="message received">Hi, I'm heading to Goa. Want to join?</div>
+    </div>
+    <div class="chat-footer">
+        <input type="text" id="chat-input" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+ <!-- Chat Window -->
+<div id="chat-window" class="chat-window">
+    <div class="chat-header">
+        <span id="chat-user">Chat with Sneha Sharma</span> <!-- Added the id "chat-user" here -->
+        <span id="close-chat" onclick="closeChat()">X</span>
+    </div>
+    <div class="chat-body"></div>
+    <div class="chat-footer">
+        <input type="text" id="chat-input" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+    <script src="companion.js"></script>
+
+</body>
+</html>
